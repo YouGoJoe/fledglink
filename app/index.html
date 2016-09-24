@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+  <title>Fledglink</title>
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
+  <link rel="stylesheet" href="./jspm_packages/github/angular/bower-material@master/angular-material.css"/>
+  <link rel="stylesheet" href="./assets/app.css"/>
+</head>
+
+<body ng-cloak layout="column" ng-controller="AppController as app">
+
+  <!-- Container #1 (see wireframe) -->
+  <md-toolbar layout="row" class="md-toolbar-tools">
+    <md-button class="menu md-icon-button" hide-gt-sm ng-click="app.toggleList()"
+               aria-label="Show User List">
+      <md-icon md-svg-icon="menu"></md-icon>
+    </md-button>
+    <h1>Fledglink</h1>
+  </md-toolbar>
+
+  <!-- Container #2 -->
+  <div flex layout="row">
+
+    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
+      <img src="./assets/logo.png" height="200px"/>
+      <h2 style="text-align: center" layout-padding>A Podcast for people who don't know what to do with their lives</h2>
+      <h4 style="font-style:italic;text-align: center">Starring two guys who don't know what they're doing with their lives</h4>
+    </md-sidenav>
+      
+    <md-content layout-padding flex="75">
+
+      <!-- Ep directive -->
+      <h1>Productivity</h1>
+      <p>In our inaugural episode Will and Joe talk about getting things done (no not the book). They talk about dominoes, drinking and coding, tracking what you do, Will not starting enough projects, Joe starting far too many, and the Non-Zero day. They suggest focussing on your passions, reaching out to others for help, and being pro-active about your own productivity issues.</p>
+      <span layout="row" layout-align="center center" style="width:100%">
+        <audio controls></audio>
+      </span>
+      <md-list>
+        <md-list-item href="https://www.reddit.com/r/NonZeroDay/" target="_blank">
+          Non-Zero day
+        </md-list-item>
+        <md-list-item href="https://twitter.com/WillCampbelllll" target="_blank">
+          @WillCampbelllll
+        </md-list-item>
+        <md-list-item href="https://twitter.com/YouGoJoe" target="_blank">
+          @YouGoJoe
+        </md-list-item>
+      </md-list>
+    </md-content>
+
+
+  </div>
+
+  <script src="./jspm_packages/system.js" type="text/javascript"></script>
+  <script src="config.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    System
+        .import('src/boot/boot')
+        .catch( console.error.bind(console) ); // make sure any errors print to console
+  </script>
+
+</body>
+</html>
