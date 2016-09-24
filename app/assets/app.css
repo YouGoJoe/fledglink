@@ -131,3 +131,8 @@ span.name {
   font-size: 1.1em;
   padding-left: 5px;
 }
+
+.md-light{
+  background-color: hsl(174, 100%, 85%);
+  color: rgb(0, 150, 136);
+}

@@ -10,51 +10,66 @@
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
   <link rel="stylesheet" href="./jspm_packages/github/angular/bower-material@master/angular-material.css"/>
   <link rel="stylesheet" href="./assets/app.css"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body ng-cloak layout="column" ng-controller="AppController as app">
 
-  <!-- Container #1 (see wireframe) -->
-  <md-toolbar layout="row" class="md-toolbar-tools">
-    <md-button class="menu md-icon-button" hide-gt-sm ng-click="app.toggleList()"
-               aria-label="Show User List">
-      <md-icon md-svg-icon="menu"></md-icon>
-    </md-button>
-    <h1>Fledglink</h1>
-  </md-toolbar>
+  <!-- Toolbar -->
+  <div layout="row" layout-align="space-between center" class="md-accent" >
+    <img src="./assets/logo.png" style="height:60px;" />
 
-  <!-- Container #2 -->
-  <div flex layout="row">
-
-    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
-      <img src="./assets/logo.png" height="200px"/>
-      <h2 style="text-align: center" layout-padding>A Podcast for people who don't know what to do with their lives</h2>
-      <h4 style="font-style:italic;text-align: center">Starring two guys who don't know what they're doing with their lives</h4>
-    </md-sidenav>
-      
-    <md-content layout-padding flex="75">
-
-      <!-- Ep directive -->
-      <h1>Productivity</h1>
-      <p>In our inaugural episode Will and Joe talk about getting things done (no not the book). They talk about dominoes, drinking and coding, tracking what you do, Will not starting enough projects, Joe starting far too many, and the Non-Zero day. They suggest focussing on your passions, reaching out to others for help, and being pro-active about your own productivity issues.</p>
-      <span layout="row" layout-align="center center" style="width:100%">
-        <audio controls></audio>
-      </span>
-      <md-list>
-        <md-list-item href="https://www.reddit.com/r/NonZeroDay/" target="_blank">
-          Non-Zero day
-        </md-list-item>
-        <md-list-item href="https://twitter.com/WillCampbelllll" target="_blank">
-          @WillCampbelllll
-        </md-list-item>
-        <md-list-item href="https://twitter.com/YouGoJoe" target="_blank">
-          @YouGoJoe
-        </md-list-item>
-      </md-list>
-    </md-content>
-
-
+    <div layout="row" layout-align="space-between center" layout-margin>
+        <md-icon>copyright</md-icon>
+        <md-icon>donut_small</md-icon>
+        <md-icon>offline_pin</md-icon>
+    </div>
   </div>
+
+  <!-- Super hero header -->
+  <div layout="row" layout-align="start center" flex>
+    <div flex-offset="15" flex="60" layout="row" layout-padding>
+      <img src="./assets/circle.png" />
+      <div layout="column" layout-align="space-between stretch">
+        <strong style="font-size:20px;">A podcast for people who think code is neat but don't know what they're doing with their lives...</strong>
+        <span style="font-size:18px;width:85%;">...starring two guys who think code is neat but don't know what they're doing with their lives</span>
+        <div>
+            <md-button class="md-raised md-accent" style="width:35%;">Subcribe</md-button>
+            <md-button class="md-raised md-primary" style="width:35%;">Listen</md-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div layout="column">
+    <md-toolbar class="md-toolbar-tools" layout="row" layout-align="center center"><span>Latest Episodes</span></md-toolbar>
+
+    <!-- Ep list -->
+      <md-content>
+          <md-list>
+            <md-list-item layout="row" layout-align="start center" style="background-color: white;">
+                <div flex-offset="20" layout="row" layout-align="space-around center">
+                    <md-icon class="md-accent">fast_rewind</md-icon>
+                    <md-icon class="md-primary">pause_circle_filled</md-icon>
+                    <md-icon class="md-accent">fast_forward</md-icon>
+                </div>
+            </md-list-item>
+            <md-list-item layout="row" layout-align="start center" class="md-light">
+                <md-icon class="md-primary">play_circle_filled</md-icon>
+                <strong>Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>             
+            </md-list-item>
+            <md-list-item layout="row" layout-align="start center" style="background-color: white;">
+                <md-icon class="md-primary">play_circle_filled</md-icon>
+                <strong style="color:rgb(0, 150, 136);">Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>
+            </md-list-item>
+            <md-list-item layout="row" layout-align="start center" class="md-light">
+                <md-icon class="md-primary">play_circle_filled</md-icon>
+                <strong style="color:teal;">Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>             
+            </md-list-item>
+          </md-list>
+        </md-content>
+        <md-button layout="row" layout-align="center center" style="height: 60px;"><span>SUBSCRIBE</span></md-button>
+    </div>
 
   <script src="./jspm_packages/system.js" type="text/javascript"></script>
   <script src="config.js" type="text/javascript"></script>
