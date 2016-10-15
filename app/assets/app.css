@@ -136,3 +136,7 @@ span.name {
   background-color: hsl(174, 100%, 85%);
   color: rgb(0, 150, 136);
 }
+
+.white-background{
+  background-color: white;
+}

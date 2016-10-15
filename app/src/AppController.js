@@ -4,41 +4,52 @@
  * @param $mdSidenav
  * @constructor
  */
-function AppController(UsersDataService, $mdSidenav) {
-  var self = this;
+function AppController() {
+  var vm = this;
+  
+  vm.podcasts = [
+    {
+      id: 1,
+      title: 'Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks',
+      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices erat nec erat condimentum, 
+      hendrerit feugiat nibh mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
+      Cras volutpat, ligula et viverra convallis, magna ligula molestie est, in vestibulum nunc ex nec justo. Donec erat libero, 
+      tincidunt vitae orci non, dignissim pretium sem. Nunc sit amet faucibus odio. Sed`,
+      source: './podcasts/Ep1 - Productivity _RAW.mp3',
+    },
+    {
+      id: 2,
+      title: 'Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks',
+      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices erat nec erat condimentum, 
+      hendrerit feugiat nibh mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
+      Cras volutpat, ligula et viverra convallis, magna ligula molestie est, in vestibulum nunc ex nec justo. Donec erat libero, 
+      tincidunt vitae orci non, dignissim pretium sem. Nunc sit amet faucibus odio. Sed`,
+      source: './podcasts/Ep2 - Gated Content - Compressed.mp3',
+    },
+    {
+      id: 3,
+      title: 'Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks',
+      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices erat nec erat condimentum, 
+      hendrerit feugiat nibh mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
+      Cras volutpat, ligula et viverra convallis, magna ligula molestie est, in vestibulum nunc ex nec justo. Donec erat libero, 
+      tincidunt vitae orci non, dignissim pretium sem. Nunc sit amet faucibus odio. Sed`,
+      source: '',
+    }
 
-  self.selected     = null;
-  self.users        = [ ];
-  self.selectUser   = selectUser;
-  self.toggleList   = toggleUsersList;
+  ]
 
-  // Load all registered users
+  vm.select = function(podcast){
+    vm.podcasts.forEach(function(cast){
+      cast.selected = false;
+    })
 
-  UsersDataService
-        .loadAllUsers()
-        .then( function( users ) {
-          self.users    = [].concat(users);
-          self.selected = users[0];
-        });
-
-  // *********************************
-  // Internal methods
-  // *********************************
-
-  /**
-   * Hide or Show the 'left' sideNav area
-   */
-  function toggleUsersList() {
-    $mdSidenav('left').toggle();
+    vm.limit = 65;
+    podcast.selected = true;
   }
 
-  /**
-   * Select the current avatars
-   * @param menuId
-   */
-  function selectUser ( user ) {
-    self.selected = angular.isNumber(user) ? $scope.users[user] : user;
+  vm.more = function(){
+    vm.limit = Number.MAX_SAFE_INTEGER;
   }
 }
 
-export default [ 'UsersDataService', '$mdSidenav', AppController ];
+export default [ AppController ];

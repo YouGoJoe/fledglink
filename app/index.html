@@ -47,24 +47,36 @@
     <!-- Ep list -->
       <md-content>
           <md-list>
-            <md-list-item layout="row" layout-align="start center" style="background-color: white;">
-                <div flex-offset="20" layout="row" layout-align="space-around center">
+            <md-list-item ng-class="podcast.id%2 === 0 ? 'white-background' : 'md-light'" ng-repeat="podcast in app.podcasts">
+              
+              <!-- Unselected podcast (default state) -->
+              <div ng-if="!podcast.selected" layout="row" layout-align="start center" flex="80">
+                <span flex="25"></span>
+                <md-button class="md-icon-button" ng-click="app.select(podcast)"><md-icon class="md-primary">play_circle_filled</md-icon></md-button>
+                <strong style="color:teal;" flex-offset="5">Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>
+              </div>
+
+              <!-- Podcast Player for selected podcast-->
+              <div ng-if="podcast.selected" layout="row" layout-align="start center" flex="80">
+                <div flex-offset="25" layout"column" layout-align="center center">
+                  <audio controls>
+                    <source ng-src="{{podcast.source}}" type="audio/mp3">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <div layout="row" layout-align="space-around center">
                     <md-icon class="md-accent">fast_rewind</md-icon>
                     <md-icon class="md-primary">pause_circle_filled</md-icon>
                     <md-icon class="md-accent">fast_forward</md-icon>
+                  </div>
                 </div>
-            </md-list-item>
-            <md-list-item layout="row" layout-align="start center" class="md-light">
-                <md-icon class="md-primary">play_circle_filled</md-icon>
-                <strong>Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>             
-            </md-list-item>
-            <md-list-item layout="row" layout-align="start center" style="background-color: white;">
-                <md-icon class="md-primary">play_circle_filled</md-icon>
-                <strong style="color:rgb(0, 150, 136);">Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>
-            </md-list-item>
-            <md-list-item layout="row" layout-align="start center" class="md-light">
-                <md-icon class="md-primary">play_circle_filled</md-icon>
-                <strong style="color:teal;">Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>             
+                <div flex-offset="5" layout="column" layout-align="start stretch" layout-margin>
+                  <span style="font-size:24px;color:initial;">{{podcast.title}}</span>
+                  <span style="color:initial;">
+                    {{podcast.description | limitTo:app.limit }}
+                    <span ng-if="podcast.description.length > app.limit">... <md-button class="md-primary" ng-click="app.more()" flex="20">More Info</md-button></span>
+                  </span>
+                </div>
+              </div>
             </md-list-item>
           </md-list>
         </md-content>
