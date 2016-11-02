@@ -6,6 +6,7 @@
  */
 function AppController() {
   var vm = this;
+  var DEFAULT_LIMIT = 65;
   
   vm.podcasts = [
     {
@@ -43,13 +44,23 @@ function AppController() {
       cast.selected = false;
     })
 
-    vm.limit = 65;
+    vm.limit = DEFAULT_LIMIT;
     podcast.selected = true;
   }
 
   vm.more = function(){
     vm.limit = Number.MAX_SAFE_INTEGER;
+    vm.moreClicked = true;
   }
+
+  vm.less = function(){
+    vm.limit = DEFAULT_LIMIT;
+    vm.moreClicked = false;
+  }
+
+  vm.init = function(){
+    vm.select(vm.podcasts[0]);
+  }();
 }
 
 export default [ AppController ];

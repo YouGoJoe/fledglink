@@ -15,34 +15,36 @@
 
 <body ng-cloak layout="column" ng-controller="AppController as app">
 
-  <!-- Toolbar -->
-  <div layout="row" layout-align="space-between center" class="md-accent" >
-    <img src="./assets/logo.png" style="height:60px;" />
+  <div class="background-image" flex layout="column">
+    <!-- Toolbar -->
+    <div layout="row" layout-align="space-between center" class="md-accent" >
+      <img src="./assets/logo.png" style="height:60px;" />
 
-    <div layout="row" layout-align="space-between center" layout-margin>
-        <md-icon>copyright</md-icon>
-        <md-icon>donut_small</md-icon>
-        <md-icon>offline_pin</md-icon>
+      <div layout="row" layout-align="space-between center" layout-margin>
+          <md-icon>copyright</md-icon>
+          <md-icon>donut_small</md-icon>
+          <md-icon>offline_pin</md-icon>
+      </div>
     </div>
-  </div>
 
-  <!-- Super hero header -->
-  <div layout="row" layout-align="start center" flex>
-    <div flex-offset="15" flex="60" layout="row" layout-padding>
-      <img src="./assets/circle.png" />
-      <div layout="column" layout-align="space-between stretch">
-        <strong style="font-size:20px;">A podcast for people who think code is neat but don't know what they're doing with their lives...</strong>
-        <span style="font-size:18px;width:85%;">...starring two guys who think code is neat but don't know what they're doing with their lives</span>
-        <div>
-            <md-button class="md-raised md-accent" style="width:35%;">Subcribe</md-button>
-            <md-button class="md-raised md-primary" style="width:35%;">Listen</md-button>
+    <!-- Super hero header -->
+    <div layout="row" layout-align="start center" flex>
+      <div flex-offset="15" flex="60" layout="row" layout-padding>
+        <img src="./assets/circle.png" />
+        <div layout="column" layout-align="space-between stretch">
+          <strong style="font-size:20px;">A podcast for people who think code is neat but don't know what they're doing with their lives...</strong>
+          <span style="font-size:18px;width:85%;">...starring two guys who think code is neat but don't know what they're doing with their lives</span>
+          <div>
+              <md-button class="md-raised subscribe-btn hero-button">Subcribe</md-button>
+              <md-button class="md-raised md-primary hero-button">Listen</md-button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div layout="column">
-    <md-toolbar class="md-toolbar-tools" layout="row" layout-align="center center"><span>Latest Episodes</span></md-toolbar>
+    <md-toolbar class="md-toolbar-tools" layout="row" layout-align="center center" style="font-size:12px;"><span>LATEST EPISODES</span></md-toolbar>
 
     <!-- Ep list -->
       <md-content>
@@ -50,9 +52,9 @@
             <md-list-item ng-class="podcast.id%2 === 0 ? 'white-background' : 'md-light'" ng-repeat="podcast in app.podcasts">
               
               <!-- Unselected podcast (default state) -->
-              <div ng-if="!podcast.selected" layout="row" layout-align="start center" flex="80">
+              <div ng-if="!podcast.selected" layout="row" layout-align="start center" flex="80" ng-click="app.select(podcast)" style="cursor:pointer;">
                 <span flex="25"></span>
-                <md-button class="md-icon-button" ng-click="app.select(podcast)"><md-icon class="md-primary">play_circle_filled</md-icon></md-button>
+                <md-button class="md-icon-button"><md-icon class="md-primary">play_circle_filled</md-icon></md-button>
                 <strong style="color:teal;" flex-offset="5">Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>
               </div>
 
@@ -73,7 +75,8 @@
                   <span style="font-size:24px;color:initial;">{{podcast.title}}</span>
                   <span style="color:initial;">
                     {{podcast.description | limitTo:app.limit }}
-                    <span ng-if="podcast.description.length > app.limit">... <md-button class="md-primary" ng-click="app.more()" flex="20">More Info</md-button></span>
+                    <span ng-if="podcast.description.length > app.limit">... <md-button class="md-primary" ng-click="app.more()" style="background-color: transparent;" flex="20">More Info</md-button></span>
+                    <span ng-if="app.moreClicked"><md-button class="md-primary" ng-click="app.less()" style="background-color: transparent;" flex="20">Less Info</md-button></span>
                   </span>
                 </div>
               </div>

@@ -133,10 +133,29 @@ span.name {
 }
 
 .md-light{
-  background-color: hsl(174, 100%, 85%);
+  background-color: #f2f2f2;
   color: rgb(0, 150, 136);
 }
 
 .white-background{
   background-color: white;
+}
+
+.hero-button{
+  width:35%;
+  box-shadow:none !important;
+  font-size:12px;
+}
+
+.subscribe-btn{
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
+  background-color: transparent !important;
+  color: rgb(0,150,136) !important;
+  border: 1px solid rgb(0,150,136) !important;
+}
+
+.background-image{
+  background-image:url("hero-background.png");
 }
