@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,83 +9,90 @@
 
   <title>Fledglink</title>
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
-  <link rel="stylesheet" href="./jspm_packages/github/angular/bower-material@master/angular-material.css"/>
-  <link rel="stylesheet" href="./assets/app.css"/>
+  <link rel="stylesheet" href="./jspm_packages/github/angular/bower-material@master/angular-material.css" />
+  <link rel="stylesheet" href="assets/app.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body ng-cloak layout="column" ng-controller="AppController as app">
+  <md-content>
+    <div class="background-image" flex layout="column" style="min-height:416px;">
+      <!-- Toolbar -->
+      <div layout="row" layout-align="space-between center" class="md-accent">
+        <img src="./assets/logo.png" style="height:60px;" />
 
-  <div class="background-image" flex layout="column">
-    <!-- Toolbar -->
-    <div layout="row" layout-align="space-between center" class="md-accent" >
-      <img src="./assets/logo.png" style="height:60px;" />
-
-      <div layout="row" layout-align="space-between center" layout-margin>
+        <div layout="row" layout-align="space-between center" layout-margin>
           <md-icon>copyright</md-icon>
           <md-icon>donut_small</md-icon>
           <md-icon>offline_pin</md-icon>
+        </div>
       </div>
-    </div>
 
-    <!-- Super hero header -->
-    <div layout="row" layout-align="start center" flex>
-      <div flex-offset="15" flex="60" layout="row" layout-padding>
-        <img src="./assets/circle.png" />
-        <div layout="column" layout-align="space-between stretch">
-          <strong style="font-size:20px;">A podcast for people who think code is neat but don't know what they're doing with their lives...</strong>
-          <span style="font-size:18px;width:85%;">...starring two guys who think code is neat but don't know what they're doing with their lives</span>
-          <div>
+      <!-- Super hero header -->
+      <div layout="row" layout-align="start center" flex>
+        <div flex-offset="15" flex="60" layout="row" layout-padding>
+          <img src="./assets/circle.png" />
+          <div layout="column" layout-align="space-between stretch">
+            <strong style="font-size:20px;">A podcast for people who think code is neat but don't know what they're doing with their lives...</strong>
+            <span style="font-size:18px;width:85%;">...starring two guys who think code is neat but don't know what they're doing with their lives</span>
+            <div>
               <md-button class="md-raised subscribe-btn hero-button">Subcribe</md-button>
-              <md-button class="md-raised md-primary hero-button">Listen</md-button>
+              <md-button class="md-raised md-primary hero-button" ng-click="app.heroListen()">Listen</md-button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div layout="column">
-    <md-toolbar class="md-toolbar-tools" layout="row" layout-align="center center" style="font-size:12px;"><span>LATEST EPISODES</span></md-toolbar>
+    <div layout="column">
+      <md-toolbar class="md-toolbar-tools" layout="row" layout-align="center center" style="font-size:12px;"><span>LATEST EPISODES</span></md-toolbar>
 
-    <!-- Ep list -->
+      <!-- Ep list -->
       <md-content>
-          <md-list>
-            <md-list-item ng-class="podcast.id%2 === 0 ? 'white-background' : 'md-light'" ng-repeat="podcast in app.podcasts">
-              
-              <!-- Unselected podcast (default state) -->
-              <div ng-if="!podcast.selected" layout="row" layout-align="start center" flex="80" ng-click="app.select(podcast)" style="cursor:pointer;">
-                <span flex="25"></span>
-                <md-button class="md-icon-button"><md-icon class="md-primary">play_circle_filled</md-icon></md-button>
-                <strong style="color:teal;" flex-offset="5">Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>
-              </div>
+        <md-list>
+          <md-list-item ng-class="podcast.id%2 === 0 ? 'white-background' : 'md-light'" ng-repeat="podcast in app.podcasts">
 
-              <!-- Podcast Player for selected podcast-->
-              <div ng-if="podcast.selected" layout="row" layout-align="start center" flex="80">
-                <div flex-offset="25" layout"column" layout-align="center center">
-                  <audio controls>
-                    <source ng-src="{{podcast.source}}" type="audio/mp3">
-                    Your browser does not support the audio element.
-                  </audio>
-                  <div layout="row" layout-align="space-around center">
-                    <md-icon class="md-accent">fast_rewind</md-icon>
+            <!-- Unselected podcast (default state) -->
+            <div ng-if="!podcast.selected" layout="row" layout-align="start center" flex="80" ng-click="app.select(podcast)" style="cursor:pointer;">
+              <span flex="25"></span>
+              <md-button class="md-icon-button" ng-click="app.listen(podcast)">
+                <md-icon class="md-primary">play_circle_filled</md-icon>
+              </md-button>
+              <strong style="color:teal;" flex-offset="5">Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>
+            </div>
+
+            <!-- Podcast Player for selected podcast-->
+            <div ng-show="podcast.selected" ng-hide="!podcast.selected" layout="row" layout-align="start center" flex="80">
+              <div flex-offset="20" layout="column" layout-align="center center">
+                <audio id="audio_{{podcast.id}}">
+                  <source ng-src="{{podcast.source}}" type="audio/mp3"> Your browser does not support the audio element.
+                </audio>
+                <div layout="row" layout-align="space-around center">
+                  <md-icon class="md-accent">fast_rewind</md-icon>
+                  <md-button class="md-icon-button" ng-click="app.pause(podcast)" ng-hide="!podcast.playing">
                     <md-icon class="md-primary">pause_circle_filled</md-icon>
-                    <md-icon class="md-accent">fast_forward</md-icon>
-                  </div>
+                  </md-button>                  
+                  <md-button class="md-icon-button" ng-click="app.listen(podcast)" ng-hide="podcast.playing">
+                    <md-icon class="md-primary">play_circle_filled</md-icon>
+                  </md-button>
+                  <md-icon class="md-accent">fast_forward</md-icon>
                 </div>
-                <div flex-offset="5" layout="column" layout-align="start stretch" layout-margin>
-                  <span style="font-size:24px;color:initial;">{{podcast.title}}</span>
-                  <span style="color:initial;">
+              </div>
+              <div flex-offset="5" layout="column" layout-align="start stretch" layout-margin>
+                <span style="font-size:24px;color:initial;">{{podcast.title}}</span>
+                <span style="color:initial;">
                     {{podcast.description | limitTo:app.limit }}
                     <span ng-if="podcast.description.length > app.limit">... <md-button class="md-primary" ng-click="app.more()" style="background-color: transparent;" flex="20">More Info</md-button></span>
-                    <span ng-if="app.moreClicked"><md-button class="md-primary" ng-click="app.less()" style="background-color: transparent;" flex="20">Less Info</md-button></span>
-                  </span>
-                </div>
+                <span ng-if="app.moreClicked"><md-button class="md-primary" ng-click="app.less()" style="background-color: transparent;" flex="20">Less Info</md-button></span>
+                </span>
               </div>
-            </md-list-item>
-          </md-list>
-        </md-content>
-        <md-button layout="row" layout-align="center center" style="height: 60px;"><span>SUBSCRIBE</span></md-button>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
+      <md-button layout="row" layout-align="center center" style="height:60px;margin:0;"><span>SUBSCRIBE</span></md-button>
     </div>
+  </md-content>
 
   <script src="./jspm_packages/system.js" type="text/javascript"></script>
   <script src="config.js" type="text/javascript"></script>
@@ -95,4 +103,5 @@
   </script>
 
 </body>
+
 </html>
