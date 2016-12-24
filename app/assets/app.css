@@ -157,5 +157,9 @@ span.name {
 }
 
 .background-image{
-  background-image:url("hero-background.png");
+  background-image:url("code-bg.jpg");
+}
+
+.facebook-icon{
+  background-image: url("Facebook icon.png");
 }

@@ -18,21 +18,36 @@
   <md-content>
     <div class="background-image" flex layout="column" style="min-height:416px;">
       <!-- Toolbar -->
-      <div layout="row" layout-align="space-between center" class="md-accent">
-        <img src="./assets/logo.png" style="height:60px;" />
+      <div layout="row" layout-align="end center" class="md-accent">
 
-        <div layout="row" layout-align="space-between center" layout-margin>
-          <md-icon>copyright</md-icon>
-          <md-icon>donut_small</md-icon>
-          <md-icon>offline_pin</md-icon>
+        <!-- Regular -->
+        <div ng-if="!app.isRetina() && !app.isMobile()" layout="row" layout-align="space-between center" layout-margin>
+          <img src="./assets/email icon.png" width="24px" height="24px" />
+          <img src="./assets/Twitter icon.png" width="24px" height="24px" />
+          <img src="./assets/Facebook icon.png" width="24px" height="24px" />          
+        </div>
+
+        <!-- Retina -->
+        <div ng-if="app.isRetina()" layout="row" layout-align="space-between center" layout-margin>
+          <img src="./assets/email icon@2x.png" width="24px" height="24px" />
+          <img src="./assets/Twitter icon@2x.png" width="24px" height="24px" />
+          <img src="./assets/Facebook icon@2x.png" width="24px" height="24px" />          
+        </div>
+
+        <!-- Mobile -->
+        <div ng-if="app.isMobile()" layout="row" layout-align="space-between center" layout-margin>
+          <img src="./assets/email icon@0.5x.png" width="24px" height="24px" />
+          <img src="./assets/Twitter icon@0.5x.png" width="24px" height="24px" />
+          <img src="./assets/Facebook icon@0.5x.png" width="24px" height="24px" />          
         </div>
       </div>
 
       <!-- Super hero header -->
       <div layout="row" layout-align="start center" flex>
-        <div flex-offset="15" flex="60" layout="row" layout-padding>
-          <img src="./assets/circle.png" />
+        <div flex-offset-gt-sm="15" flex-gt-sm="60" layout="row" layout-align="start center" layout-padding>
+          <img src="./assets/fledglink_logomark.png" width="202px" height="128px" />
           <div layout="column" layout-align="space-between stretch">
+            <img src="./assets/fledglink_hero-wordmark.png" width="460px" height="171px" />
             <strong style="font-size:20px;">A podcast for people who think code is neat but don't know what they're doing with their lives...</strong>
             <span style="font-size:18px;width:85%;">...starring two guys who think code is neat but don't know what they're doing with their lives</span>
             <div>
@@ -53,8 +68,8 @@
           <md-list-item ng-class="podcast.id%2 === 0 ? 'white-background' : 'md-light'" ng-repeat="podcast in app.podcasts">
 
             <!-- Unselected podcast (default state) -->
-            <div ng-if="!podcast.selected" layout="row" layout-align="start center" flex="80" ng-click="app.select(podcast)" style="cursor:pointer;">
-              <span flex="25"></span>
+            <div ng-if="!podcast.selected" layout="row" layout-align="start center" flex-gt-sm="80" ng-click="app.select(podcast)" style="cursor:pointer;">
+              <span flex-gt-sm="25"></span>
               <md-button class="md-icon-button" ng-click="app.listen(podcast)">
                 <md-icon class="md-primary">play_circle_filled</md-icon>
               </md-button>
@@ -62,8 +77,8 @@
             </div>
 
             <!-- Podcast Player for selected podcast-->
-            <div ng-show="podcast.selected" ng-hide="!podcast.selected" layout="row" layout-align="start center" flex="80">
-              <div flex-offset="20" layout="column" layout-align="center center">
+            <div ng-show="podcast.selected" ng-hide="!podcast.selected" layout="row" layout-align="start center" flex-gt-sm="80">
+              <div flex-offset-gt-sm="20" layout="column" layout-align="center center">
                 <audio id="audio_{{podcast.id}}">
                   <source ng-src="{{podcast.source}}" type="audio/mp3"> Your browser does not support the audio element.
                 </audio>
@@ -87,12 +102,13 @@
                 </span>
               </div>
             </div>
-          </md-list-item>
+          </md-list-item>          
         </md-list>
-      </md-content>
-      <md-button layout="row" layout-align="center center" style="height:60px;margin:0;"><span>SUBSCRIBE</span></md-button>
+      </md-content>      
     </div>
   </md-content>
+  <div ng-class="app.podcasts.length%2 === 0 ? 'white-background' : 'md-light'" flex></div>
+  <md-button layout="row" layout-align="center center" style="height:60px;margin:0;"><span>SUBSCRIBE</span></md-button>
 
   <script src="./jspm_packages/system.js" type="text/javascript"></script>
   <script src="config.js" type="text/javascript"></script>
