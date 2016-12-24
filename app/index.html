@@ -15,8 +15,8 @@
 </head>
 
 <body ng-cloak layout="column" ng-controller="AppController as app">
-  <md-content>
-    <div class="background-image" flex layout="column" style="min-height:416px;">
+  <md-content flex="100" layout="column">
+    <div class="background-image" layout="column" style="min-height:416px;">
       <!-- Toolbar -->
       <div layout="row" layout-align="end center" class="md-accent">
 
@@ -24,21 +24,21 @@
         <div ng-if="!app.isRetina() && !app.isMobile()" layout="row" layout-align="space-between center" layout-margin>
           <img src="./assets/email icon.png" width="24px" height="24px" />
           <img src="./assets/Twitter icon.png" width="24px" height="24px" />
-          <img src="./assets/Facebook icon.png" width="24px" height="24px" />          
+          <img src="./assets/Facebook icon.png" width="24px" height="24px" />
         </div>
 
         <!-- Retina -->
         <div ng-if="app.isRetina()" layout="row" layout-align="space-between center" layout-margin>
           <img src="./assets/email icon@2x.png" width="24px" height="24px" />
           <img src="./assets/Twitter icon@2x.png" width="24px" height="24px" />
-          <img src="./assets/Facebook icon@2x.png" width="24px" height="24px" />          
+          <img src="./assets/Facebook icon@2x.png" width="24px" height="24px" />
         </div>
 
         <!-- Mobile -->
         <div ng-if="app.isMobile()" layout="row" layout-align="space-between center" layout-margin>
           <img src="./assets/email icon@0.5x.png" width="24px" height="24px" />
           <img src="./assets/Twitter icon@0.5x.png" width="24px" height="24px" />
-          <img src="./assets/Facebook icon@0.5x.png" width="24px" height="24px" />          
+          <img src="./assets/Facebook icon@0.5x.png" width="24px" height="24px" />
         </div>
       </div>
 
@@ -59,30 +59,30 @@
       </div>
     </div>
 
-    <div layout="column">
+    <div layout="column" style="display:block;">
       <md-toolbar class="md-toolbar-tools" layout="row" layout-align="center center" style="font-size:12px;"><span>LATEST EPISODES</span></md-toolbar>
 
       <!-- Ep list -->
-      <md-content>
-        <md-list>
-          <md-list-item ng-class="podcast.id%2 === 0 ? 'white-background' : 'md-light'" ng-repeat="podcast in app.podcasts">
+      <md-list style="padding:0;">
+        <md-list-item ng-class="podcast.id%2 === 0 ? 'white-background' : 'md-light'" ng-repeat="podcast in app.podcasts">
 
-            <!-- Unselected podcast (default state) -->
-            <div ng-if="!podcast.selected" layout="row" layout-align="start center" flex-gt-sm="80" ng-click="app.select(podcast)" style="cursor:pointer;">
-              <span flex-gt-sm="25"></span>
+          <!-- Unselected podcast (default state) -->
+          <div ng-if="!podcast.selected" layout="row" layout-align="start center" flex-gt-sm="80" ng-click="app.select(podcast)" style="cursor:pointer;">
+            <div flex-offset-gt-sm="10" layout="column" layout-align="center center" flex="25">
               <md-button class="md-icon-button" ng-click="app.listen(podcast)">
                 <md-icon class="md-primary">play_circle_filled</md-icon>
               </md-button>
-              <strong style="color:teal;" flex-offset="5">Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>
             </div>
+            <strong style="color:teal;margin-left:16px;">Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>
+          </div>
 
-            <!-- Podcast Player for selected podcast-->
-            <div ng-show="podcast.selected" ng-hide="!podcast.selected" layout="row" layout-align="start center" flex-gt-sm="80">
-              <div flex-offset-gt-sm="20" layout="column" layout-align="center center">
-                <audio id="audio_{{podcast.id}}">
-                  <source ng-src="{{podcast.source}}" type="audio/mp3"> Your browser does not support the audio element.
-                </audio>
-                <div layout="row" layout-align="space-around center">
+          <!-- Podcast Player for selected podcast-->
+          <div ng-show="podcast.selected" ng-hide="!podcast.selected" layout="row" layout-align="start center" flex-gt-sm="80">
+            <div flex-offset-gt-sm="10" layout="column" layout-align="center center" flex="25">
+              <audio id="audio_{{podcast.id}}" controls>
+                <source ng-src="{{ './podcasts/' + podcast.source}}" type="audio/mp3"> Your browser does not support the audio element.
+              </audio>
+              <!--<div layout="row" layout-align="space-around center">
                   <md-icon class="md-accent">fast_rewind</md-icon>
                   <md-button class="md-icon-button" ng-click="app.pause(podcast)" ng-hide="!podcast.playing">
                     <md-icon class="md-primary">pause_circle_filled</md-icon>
@@ -91,24 +91,24 @@
                     <md-icon class="md-primary">play_circle_filled</md-icon>
                   </md-button>
                   <md-icon class="md-accent">fast_forward</md-icon>
-                </div>
-              </div>
-              <div flex-offset="5" layout="column" layout-align="start stretch" layout-margin>
-                <span style="font-size:24px;color:initial;">{{podcast.title}}</span>
-                <span style="color:initial;">
+                </div>-->
+            </div>
+            <div flex-offset="5" layout="column" layout-align="start stretch" layout-margin>
+              <span style="font-size:24px;color:initial;">{{podcast.title}}</span>
+              <span style="color:initial;">
                     {{podcast.description | limitTo:app.limit }}
                     <span ng-if="podcast.description.length > app.limit">... <md-button class="md-primary" ng-click="app.more()" style="background-color: transparent;" flex="20">More Info</md-button></span>
-                <span ng-if="app.moreClicked"><md-button class="md-primary" ng-click="app.less()" style="background-color: transparent;" flex="20">Less Info</md-button></span>
-                </span>
-              </div>
+              <span ng-if="app.moreClicked"><md-button class="md-primary" ng-click="app.less()" style="background-color: transparent;" flex="20">Less Info</md-button></span>
+              </span>
             </div>
-          </md-list-item>          
-        </md-list>
-      </md-content>      
+          </div>
+        </md-list-item>
+      </md-list>
     </div>
+    <div ng-class="app.podcasts.length%2 === 0 ? 'white-background' : 'md-light'" flex></div>
+    <md-button layout="row" layout-align="center center" style="height:60px;margin:0;"><span>SUBSCRIBE</span></md-button>
   </md-content>
-  <div ng-class="app.podcasts.length%2 === 0 ? 'white-background' : 'md-light'" flex></div>
-  <md-button layout="row" layout-align="center center" style="height:60px;margin:0;"><span>SUBSCRIBE</span></md-button>
+
 
   <script src="./jspm_packages/system.js" type="text/javascript"></script>
   <script src="config.js" type="text/javascript"></script>
