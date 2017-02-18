@@ -22,36 +22,36 @@
 
         <!-- Regular -->
         <div ng-if="!app.isRetina() && !app.isMobile()" layout="row" layout-align="space-between center" layout-margin>
-          <img src="./assets/email icon.png" width="24px" height="24px" />
-          <img src="./assets/Twitter icon.png" width="24px" height="24px" />
-          <img src="./assets/Facebook icon.png" width="24px" height="24px" />
+          <a href="mailto:fledglink@gmail.com" target="_blank"><img src="./assets/email icon.png" width="24px" height="24px" /></a>
+          <a href="https://twitter.com/fledglink" target="_blank"><img src="./assets/Twitter icon.png" width="24px" height="24px" /></a>
+          <a href="https://www.facebook.com/Fledglink-1192218404196656/" target="_blank"><img src="./assets/Facebook icon.png" width="24px" height="24px" /></a>
         </div>
 
         <!-- Retina -->
         <div ng-if="app.isRetina()" layout="row" layout-align="space-between center" layout-margin>
-          <img src="./assets/email icon@2x.png" width="24px" height="24px" />
-          <img src="./assets/Twitter icon@2x.png" width="24px" height="24px" />
-          <img src="./assets/Facebook icon@2x.png" width="24px" height="24px" />
+          <a href="mailto:fledglink@gmail.com" target="_blank"><img src="./assets/email icon@2x.png" width="24px" height="24px" /></a>
+          <a href="https://twitter.com/fledglink" target="_blank"><img src="./assets/Twitter icon@2x.png" width="24px" height="24px" /></a>
+          <a href="https://www.facebook.com/Fledglink-1192218404196656/" target="_blank"><img src="./assets/Facebook icon@2x.png" width="24px" height="24px" /></a>
         </div>
 
         <!-- Mobile -->
         <div ng-if="app.isMobile()" layout="row" layout-align="space-between center" layout-margin>
-          <img src="./assets/email icon@0.5x.png" width="24px" height="24px" />
-          <img src="./assets/Twitter icon@0.5x.png" width="24px" height="24px" />
-          <img src="./assets/Facebook icon@0.5x.png" width="24px" height="24px" />
+          <a href="mailto:fledglink@gmail.com" target="_blank"><img src="./assets/email icon@0.5x.png" width="24px" height="24px" /></a>
+          <a href="https://twitter.com/fledglink" target="_blank"><img src="./assets/Twitter icon@0.5x.png" width="24px" height="24px" /></a>
+          <a href="https://www.facebook.com/Fledglink-1192218404196656/" target="_blank"><img src="./assets/Facebook icon@0.5x.png" width="24px" height="24px" /></a>
         </div>
       </div>
 
       <!-- Super hero header -->
       <div layout="row" layout-align="start center" flex>
         <div flex-offset-gt-sm="15" flex-gt-sm="60" layout="row" layout-align="start center" layout-padding>
-          <img src="./assets/fledglink_logomark.png" width="202px" height="128px" />
-          <div layout="column" layout-align="space-between stretch">
-            <img src="./assets/fledglink_hero-wordmark.png" width="460px" height="171px" />
+          <img hide-xs src="./assets/fledglink_logomark.png" width="202px" height="128px" />
+          <div layout="column" layout-align="space-between stretch" layout-align-xs="space-between center">
+            <img hide-xs src="./assets/fledglink_hero-wordmark.png" width="460px" height="171px" />
             <strong style="font-size:20px;">A podcast for people who think code is neat but don't know what they're doing with their lives...</strong>
-            <span style="font-size:18px;width:85%;">...starring two guys who think code is neat but don't know what they're doing with their lives</span>
+            <span style="font-size:18px;width:85%;" >...starring two guys who think code is neat but don't know what they're doing with their lives</span>
             <div>
-              <md-button class="md-raised subscribe-btn hero-button">Subcribe</md-button>
+              <md-button ng-click="app.subscribe()" class="md-raised subscribe-btn hero-button">Subcribe</md-button>
               <md-button class="md-raised md-primary hero-button" ng-click="app.heroListen()">Listen</md-button>
             </div>
           </div>
@@ -64,7 +64,7 @@
 
       <!-- Ep list -->
       <md-list style="padding:0;">
-        <md-list-item ng-class="podcast.id%2 === 0 ? 'white-background' : 'md-light'" ng-repeat="podcast in app.podcasts">
+        <md-list-item ng-class="podcast.id%2 === 0 ? 'white-background' : 'md-light'" ng-repeat="podcast in app.podcasts" ng-init="podcast.moreClicked = false;">
 
           <!-- Unselected podcast (default state) -->
           <div ng-if="!podcast.selected" layout="row" layout-align="start center" flex-gt-sm="80" ng-click="app.select(podcast)" style="cursor:pointer;">
@@ -96,9 +96,16 @@
             <div flex-offset="5" layout="column" layout-align="start stretch" layout-margin>
               <span style="font-size:24px;color:initial;">{{podcast.title}}</span>
               <span style="color:initial;">
-                    {{podcast.description | limitTo:app.limit }}
-                    <span ng-if="podcast.description.length > app.limit">... <md-button class="md-primary" ng-click="app.more()" style="background-color: transparent;" flex="20">More Info</md-button></span>
-              <span ng-if="app.moreClicked"><md-button class="md-primary" ng-click="app.less()" style="background-color: transparent;" flex="20">Less Info</md-button></span>
+                    <span>{{podcast.description | limitTo:app.limit }}</span>
+                    <md-list ng-if="podcast.moreClicked">
+                      <strong>Episode Links:</strong>
+                      <md-list-item ng-repeat="note in podcast.notes">
+                          <span ng-if="note.indexOf('http://') === -1 && note.indexOf('https://') === -1">{{note}}</span>
+                          <a ng-if="note.indexOf('http://') !== -1 || note.indexOf('https://') !== -1" ng-href="{{note}}" target="_blank">{{note}}</a>
+                      </md-list-item>
+                    </md-list>
+                    <span ng-if="podcast.description.length > app.limit">... <md-button class="md-primary" ng-click="app.more(podcast)" style="background-color: transparent;" flex="20">More Info</md-button></span>
+                    <span ng-if="podcast.moreClicked"><md-button class="md-primary" ng-click="app.less(podcast)" style="background-color: transparent;" flex="20">Less Info</md-button></span>
               </span>
             </div>
           </div>
@@ -106,7 +113,7 @@
       </md-list>
     </div>
     <div ng-class="app.podcasts.length%2 === 0 ? 'white-background' : 'md-light'" flex></div>
-    <md-button layout="row" layout-align="center center" style="height:60px;margin:0;"><span>SUBSCRIBE</span></md-button>
+    <md-button ng-click="app.subscribe()" layout="row" layout-align="center center" style="height:60px;margin:0;"><span>SUBSCRIBE</span></md-button>
   </md-content>
 
 
@@ -114,8 +121,8 @@
   <script src="config.js" type="text/javascript"></script>
   <script type="text/javascript">
     System
-        .import('src/boot/boot')
-        .catch( console.error.bind(console) ); // make sure any errors print to console
+      .import('src/boot/boot')
+      .catch(console.error.bind(console)); // make sure any errors print to console
   </script>
 
 </body>
