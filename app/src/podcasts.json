@@ -1,23 +1,185 @@
 [
-    {
-      "id": 1,
-      "title": "Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices erat nec erat condimentum, hendrerit feugiat nibh mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras volutpat, ligula et viverra convallis, magna ligula in vestibulum nunc ex nec justo. Donec erat libero,tincidunt vitae orci non, dignissim pretium sem. Nunc sit amet faucibus odio. Sed",
-      "notes" : ["note 1" , "note 2", "note 3", "https://twitter.com/fledglink"],
-      "source": "Ep1-Productivity_RAW.mp3"
-    },
-    {
-      "id": 2,
-      "title": "Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices erat nec erat condimentum, hendrerit feugiat nibh mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras volutpat, ligula et viverra convallis, magna ligula,in vestibulum nunc ex nec justo. Donec erat libero,tincidunt vitae orci non, dignissim pretium sem. Nunc sit amet faucibus odio. Sed",
-      "notes" : [],
-      "source": "Ep2 - Gated Content - Compressed.mp3"
-    },
-    {
-      "id": 3,
-      "title": "Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices erat nec erat condimentum, hendrerit feugiat nibh mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras volutpat, ligula et viverra convallis, magna ligula in vestibulum nunc ex nec justo. Donec erat libero,tincidunt vitae orci non, dignissim pretium sem. Nunc sit amet faucibus odio. Sed",
-      "notes" : [],
-      "source": ""
-    }
-  ]
+  {
+    "id": 7,
+    "title": "[84:37] Coffeemaker AI in the Post-Iron Age of the Web",
+    "description": "We propose and explore a new web paradigm, the transition from web 2.0 to web 3.0. Joe fantasizes about his AI coffeemaker \"Al\"",
+    "notes": [
+      {
+        "name": "[08:40] Wordpress page .html removal via .htaccess",
+        "link": "https://stackoverflow.com/questions/3128765/remove-html-from-url-via-htaccess-for-a-wordpress-website"
+      },
+      {
+        "name": "Javascript: \"technically functional\"",
+        "link": "https://pbs.twimg.com/media/CMyk0vLWIAAhd0P.jpg:large"
+      },
+      {
+        "name": "[1:14:55] 99 Percent Invisible",
+        "link": "http://99percentinvisible.org/"
+      },
+      {
+        "name": "[1:07:18] Malcolm Gladwell's Outliers and Studies on Aggression",
+        "link": "http://www.litcharts.com/lit/outliers/chapter-6-harlan-kentucky"
+      }
+      
+    ],
+    "source": "Ep11 - Coffeemaker UI in the Post-Iron Age of the Web.mp3"
+  },
+  {
+    "id": 6,
+    "title": "[54:23] Project Management Part 2 - Production and Implementation",
+    "description": "Joe and Will finish their series on self project management and discuss getting it off the ground, seeing it through, promotion, and post-release support. Joe accidentally does linear algebra.",
+    "notes": [
+      {
+        "name": "[04:20] Steal Like an Artist, pg 93",
+        "link": "https://s-media-cache-ak0.pinimg.com/736x/42/2b/de/422bde297e41f78f6b5e5bdb4b05f33d.jpg"
+      },
+      {
+        "name": "[13:00] Neil Patel Webinar on SEO",
+        "link": "https://www.facebook.com/neilkpatel/"
+      },
+      {
+        "name": "[23:30] Transposing matrices",
+        "link": "http://www.mathwords.com/t/transpose_of_a_matrix.htm"
+      },
+      {
+        "name": "[29:24] Minecraft Official Launch",
+        "link": "http://www.cgmagonline.com/2017/02/27/minecraft-reaches-122-million-lifetime-sales/"
+      },
+      {
+        "name": "[33:45] Contract for Freelancing",
+        "link": "https://www.thebalance.com/five-contract-templates-for-freelancers-1360292"
+      },
+      {
+        "name": "[40:18] XKCD 1425",
+        "link": "https://xkcd.com/1425/"
+      },
+      {
+        "name": "[44:30] Mike Monteiro inhouse communications person",
+        "link": "https://abookapart.com/products/design-is-a-job"
+      },
+      {
+        "name": "[46:40] Bikeshedding",
+        "link": "https://en.wiktionary.org/wiki/bikeshedding"
+      }
+    ],
+    "source": "ep 14 - pmgmt pt 2.mp3"
+  },
+  {
+    "id": 5,
+    "title": "[54:01] Project Management Part 1 - Research",
+    "description": "Will and Joe embark on a two-part series about self project management. Part one focuses on project inspiration and maintaing momentum with a side project. Will contemplates plagiarizing Mozilla.",
+    "notes": [
+      {
+        "name": "[12:05] Getting paid for your work",
+        "link": ""
+      },
+      {
+        "name": "[17:30] Steal Like an Artist",
+        "link": "http://austinkleon.com/steal/"
+      },
+      {
+        "name": "[19:40] Swipe Folder",
+        "link": "https://www.sitepoint.com/swipe-file-for-inspiration/"
+      },
+      {
+        "name": "[23:50] @getpitop",
+        "link": "https://twitter.com/GetPiTop"
+      },
+      {
+        "name": "[26:35] Opera Neon",
+        "link": "https://www.opera.com/computer/neon"
+      },
+      {
+        "name": "[30:40] New Mozilla Logo Article",
+        "link": "https://blog.mozilla.org/opendesign/"
+      },
+      {
+        "name": "[31:00] sidebar.io",
+        "link": "http://sidebar.io/"
+      }
+    ],
+    "source": "ep 13 pmgmt pt 1.mp3"
+  },
+  {
+    "id": 4,
+    "title": "[1:24:39] Sdrawkcab compatibility",
+    "description": "Joe and Will talk about backwards compatibility in technology including modern web devlopment, email marketing, and Apple's Air Pods. Joe gets really passionate about number data types.",
+    "notes": [],
+    "source": "Fledglink - sdarwkcab compatibility.mp3"
+  },
+  {
+    "id": 3,
+    "title": "[54:31] The Philosophy of Logging in",
+    "description": "Will and Joe get in to the nitty-gritty of implementing a login system, dos and don'ts, social media logins, and password security.",
+    "notes": [
+      {
+        "name": "[13:26] Slack magic button",
+        "link": "https://www.quora.com/How-does-the-Slack-mobile-sign-in-link-work"
+      },
+      {
+        "name": "[23:11] Mailchimp Login Article",
+        "link": "https://blog.mailchimp.com/social-login-buttons-arent-worth-it/"
+      },
+      {
+        "name": "[27:49] Hunter2 password",
+        "link": "http://knowyourmeme.com/memes/hunter2"
+      },
+      {
+        "name": "[28:18] Correct Horse Battery Staple - XKCD",
+        "link": "https://xkcd.com/936/"
+      },
+      {
+        "name": "[30:00] How Secure is my Password?",
+        "link": "https://howsecureismypassword.net/"
+      },
+      {
+        "name": "[33:54] UserOnboard.com",
+        "link": "https://www.useronboard.com/"
+      }
+    ],
+    "source": "Ep3 - Security.mp3"
+  },
+  {
+    "id": 2,
+    "title": "[42:15] The Pearly Gated Content",
+    "description": "Joe and Will discuss private and gated content, 'Freemium' subscriptions, and other ways content turns into money on the web.",
+    "notes": [],
+    "source": "Ep 2 - Final Export _2.mp3"
+  },
+  {
+    "id": 1,
+    "title": "[48:57] Productivity",
+    "description": "Will and Joe talk about getting things done and being productive, and the structures they have in place that encourage productivity.",
+    "notes": [
+      {
+        "name": "[02:05] NonZeroDay Subreddit",
+        "link": "https://www.reddit.com/r/NonZeroDay"
+      },
+      {
+        "name": "[02:52] /u/RyanS01",
+        "link": "https://www.reddit.com/r/NonZeroDay/comments/1qbxvz/the_gospel_of_uryans01_helpful_advice_for_anyone/"
+      },
+      {
+        "name": "[17:15] Todoist",
+        "link": "http://www.pcmag.com/article2/0,2817,2408574,00.asp"
+      },
+      {
+        "name": "[40:17] Igloo",
+        "link": "http://www.pcmag.com/article2/0,2817,2402513,00.asp"
+      },
+      {
+        "name": "[40:17] Wunderlist",
+        "link": "http://www.pcmag.com/article2/0,2817,2491165,00.asp,"
+      },
+      {
+        "name": "[40:17] Evernote",
+        "link": "http://www.pcmag.com/article2/0,2817,2383054,00.asp"
+      },
+      {
+        "name": "[41:13] Notepad desktop list",
+        "link": "http://www.makeuseof.com/tag/make-your-own-sticky-notes-with-notepad-windows/"
+      }
+    ],
+    "source": "Ep 1 - Productivity 1-3.mp3"
+  }
+]

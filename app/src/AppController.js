@@ -23,6 +23,7 @@ function AppController($http, $mdDialog) {
   vm.select = function (podcast) {
     vm.podcasts.forEach(function (cast) {
       cast.selected = false;
+      vm.less(cast);
     })
 
     vm.limit = DEFAULT_LIMIT;
@@ -63,7 +64,7 @@ function AppController($http, $mdDialog) {
   vm.subscribe = function () {
     return $mdDialog.show({
       escapeToClose: true,
-      template: 
+      template:
       '<md-dialog layout-margin>' +
       '<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">' +
       '<div id="mc_embed_signup">' +
@@ -78,8 +79,8 @@ function AppController($http, $mdDialog) {
       '</form>' +
       '</div>' +
       '</md-dialog>',
-      controller: function($mdDialog, $scope){
-        $scope.cancel = function(){
+      controller: function ($mdDialog, $scope) {
+        $scope.cancel = function () {
           $mdDialog.cancel();
         }
       }

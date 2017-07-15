@@ -2,6 +2,7 @@ logs/*
 node_modules/
 bower_components/
 app/jspm_packages
+app/podcasts
 tmp
 .DS_Store
 .idea

@@ -67,18 +67,20 @@
         <md-list-item ng-class="podcast.id%2 === 0 ? 'white-background' : 'md-light'" ng-repeat="podcast in app.podcasts" ng-init="podcast.moreClicked = false;">
 
           <!-- Unselected podcast (default state) -->
-          <div ng-if="!podcast.selected" layout="row" layout-align="start center" flex-gt-sm="80" ng-click="app.select(podcast)" style="cursor:pointer;">
-            <div flex-offset-gt-sm="10" layout="column" layout-align="center center" flex="25">
-              <md-button class="md-icon-button" ng-click="app.listen(podcast)">
-                <md-icon class="md-primary">play_circle_filled</md-icon>
-              </md-button>
+          <div flex="100" ng-click="app.select(podcast)" style="cursor:pointer;" ng-if="!podcast.selected">
+            <div layout="row" layout-align="start center" flex-gt-sm="80">
+              <div flex-offset-gt-sm="10" layout="column" layout-align="center center" flex="25">
+                <md-button class="md-icon-button" ng-click="app.listen(podcast)">
+                  <md-icon class="md-primary">play_circle_filled</md-icon>
+                </md-button>
+              </div>
+              <strong style="color:teal;margin-left:16px;">{{podcast.title}}</strong>
             </div>
-            <strong style="color:teal;margin-left:16px;">Punny Podcast Title, Padded For Length So That We Can See How A Long Title Looks</strong>
           </div>
 
           <!-- Podcast Player for selected podcast-->
           <div ng-show="podcast.selected" ng-hide="!podcast.selected" layout="row" layout-align="start center" flex-gt-sm="80">
-            <div flex-offset-gt-sm="10" layout="column" layout-align="center center" flex="25">
+            <div flex-offset-gt-sm="10" layout="column" layout-align="center center" flex="35" flex-gt-sm="25">
               <audio id="audio_{{podcast.id}}" controls>
                 <source ng-src="{{ './podcasts/' + podcast.source}}" type="audio/mp3"> Your browser does not support the audio element.
               </audio>
@@ -93,15 +95,15 @@
                   <md-icon class="md-accent">fast_forward</md-icon>
                 </div>-->
             </div>
-            <div flex-offset="5" layout="column" layout-align="start stretch" layout-margin>
+            <div flex-offset="5" layout="column" layout-align="start stretch" layout-margin flex>
               <span style="font-size:24px;color:initial;">{{podcast.title}}</span>
               <span style="color:initial;">
                     <span>{{podcast.description | limitTo:app.limit }}</span>
-                    <md-list ng-if="podcast.moreClicked">
+                    <md-list ng-if="podcast.moreClicked && podcast.notes.length > 0">
                       <strong>Episode Links:</strong>
-                      <md-list-item ng-repeat="note in podcast.notes">
-                          <span ng-if="note.indexOf('http://') === -1 && note.indexOf('https://') === -1">{{note}}</span>
-                          <a ng-if="note.indexOf('http://') !== -1 || note.indexOf('https://') !== -1" ng-href="{{note}}" target="_blank">{{note}}</a>
+                      <md-list-item ng-repeat="note in podcast.notes">                          
+                          <span ng-if="note.link.indexOf('http://') === -1 && note.link.indexOf('https://') === -1">{{note.name}}</span>
+                          <a ng-if="note.link.indexOf('http://') !== -1 || note.link.indexOf('https://') !== -1" ng-href="{{note.link}}" target="_blank">{{note.name}}</a>
                       </md-list-item>
                     </md-list>
                     <span ng-if="podcast.description.length > app.limit">... <md-button class="md-primary" ng-click="app.more(podcast)" style="background-color: transparent;" flex="20">More Info</md-button></span>
